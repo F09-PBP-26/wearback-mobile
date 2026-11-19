@@ -16,7 +16,7 @@ Proyek ini dibuat untuk memenuhi tugas **Proyek Akhir Semester - Pemrograman Ber
 
 ### Status Pengembangan
 
-Repositori saat ini berisi kerangka awal Flutter dengan aplikasi penghitung bawaan. Lima modul, halaman navigasi, serta integrasi DRF yang dijelaskan di bawah merupakan cakupan pengembangan dan belum diimplementasikan pada aplikasi mobile. Daftar endpoint yang sudah berjalan, desain mobile, dan tautan APK akan diperbarui mengikuti perkembangan proyek.
+Aplikasi Flutter sudah memiliki halaman awal untuk masing-masing dari lima modul yang dapat dibuka melalui menu samping. Implementasi fitur modul dan integrasi DRF masih direncanakan. Daftar endpoint yang sudah berjalan, desain mobile, dan tautan APK akan diperbarui mengikuti perkembangan proyek.
 
 ## Anggota Kelompok
 
@@ -138,7 +138,7 @@ Daftar endpoint DRF per modul belum tersedia dalam dokumentasi ini. URL, metode 
    flutter run
    ```
 
-Saat ini langkah tersebut menjalankan aplikasi penghitung bawaan Flutter. Aplikasi belum memiliki konfigurasi alamat API maupun koneksi ke PWS. Setelah integrasi tersedia, panduan ini akan dilengkapi dengan konfigurasi backend yang benar-benar digunakan oleh kode.
+Aplikasi membuka halaman Eksplorasi Lelang. Ketuk ikon menu di kiri atas untuk berpindah modul. Konfigurasi backend akan dicantumkan setelah integrasi DRF tersedia.
 
 Untuk menyiapkan backend lokal, ikuti [petunjuk instalasi pada README Django](https://github.com/F09-PBP-26/wearback/blob/main/README.md). Backend Django dikelola di repositori terpisah.
 
@@ -149,7 +149,7 @@ flutter analyze
 flutter test
 ```
 
-Pengujian yang tersedia saat ini masih berupa pengujian widget aplikasi penghitung bawaan. Pengujian modul dan integrasi akan ditambahkan bersama implementasinya.
+Pengujian widget memeriksa bahwa menu samping membuka halaman setiap modul dan menutup setelah modul dipilih.
 
 ### Membangun APK
 
