@@ -33,9 +33,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(scaffold.isDrawerOpen, isTrue);
 
-      await tester.tap(
-        find.descendant(of: drawer, matching: find.text(module.key)),
-      );
+      final menu = find.descendant(of: drawer, matching: find.text(module.key));
+      await tester.ensureVisible(menu);
+      await tester.tap(menu);
       await tester.pumpAndSettle();
 
       expect(scaffold.isDrawerOpen, isFalse);
@@ -50,6 +50,10 @@ void main() {
     await tester.tap(reviews);
     await tester.pumpAndSettle();
     expect(find.text('Ulasan Saya'), findsOneWidget);
+    expect(
+      find.text('Silakan login untuk melihat ulasan kamu.'),
+      findsOneWidget,
+    );
     await tester.pageBack();
     await tester.pumpAndSettle();
     expect(find.byType(AuctionBrowsingPage), findsOneWidget);
