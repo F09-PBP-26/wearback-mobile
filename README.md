@@ -2,7 +2,7 @@
 
 **"Wear It Back, Give It Back"**
 
-WearBack adalah platform lelang pakaian preloved yang membantu pengguna menjual pakaian yang masih layak pakai dan memberi kesempatan kedua bagi fashion item untuk terus digunakan. Pengguna dapat menemukan lelang, mengajukan penawaran, serta menyelesaikan transaksi setelah memenangkan lelang. Pakaian yang menumpuk di lemari dapat menjadi penghasilan tambahan bagi penjual sekaligus pilihan fashion yang lebih terjangkau dan berkelanjutan bagi pembeli.
+WearBack adalah platform marketplace pakaian preloved yang membantu pengguna menjual pakaian yang masih layak pakai dengan mudah, sekaligus memberi kesempatan kedua bagi fashion item untuk terus dipakai. Pakaian yang menumpuk di lemari dapat menjadi penghasilan tambahan bagi penjual dan pilihan fashion yang lebih terjangkau serta ramah lingkungan bagi pembeli. Versi mobile melanjutkan cakupan website: katalog/listing pakaian, transaksi, ulasan dan rating, pencarian titik drop-off, serta autentikasi dan profil. Auction menjadi fitur tambahan dalam marketplace, dengan penanggung jawab Hudzaifah (Uza).
 
 WearBack Mobile merupakan aplikasi Flutter yang terhubung ke [situs web WearBack](https://hudzaifah51-wearback.pws.cs.ui.ac.id). Data aplikasi dikelola oleh backend Django yang sama dengan situs web dan akan diakses melalui web service **Django REST Framework (DRF)**.
 
@@ -13,10 +13,11 @@ Proyek ini dibuat untuk memenuhi tugas **Proyek Akhir Semester - Pemrograman Ber
 - Mengurangi limbah tekstil dengan memperpanjang siklus pakai pakaian.
 - Membuka peluang penghasilan tambahan bagi penjual pakaian bekas.
 - Menyediakan alternatif belanja fashion yang lebih terjangkau dan berkelanjutan.
+- Memudahkan pengguna menemukan titik drop-off/mitra pengiriman terdekat.
 
 ### Status Pengembangan
 
-Repositori saat ini berisi kerangka awal Flutter dengan aplikasi penghitung bawaan. Lima modul, halaman navigasi, serta integrasi DRF yang dijelaskan di bawah merupakan cakupan pengembangan dan belum diimplementasikan pada aplikasi mobile. Daftar endpoint yang sudah berjalan, desain mobile, dan tautan APK akan diperbarui mengikuti perkembangan proyek.
+Pada pengerjaan lokal saat ini, halaman utama Flutter dan navigasi menuju halaman dasar Ulasan & Rating sudah dibuat. Halaman ulasan belum mengambil data dari backend. API daftar ulasan pada Django lokal sudah diverifikasi mengembalikan HTTP 200 setelah login; status deployment API di PWS belum diverifikasi. Modul lain mengikuti pembagian di bawah dan status implementasinya perlu dikonfirmasi oleh masing-masing PIC. Fitur website tidak otomatis berarti fitur Flutter sudah selesai.
 
 ## Anggota Kelompok
 
@@ -30,37 +31,40 @@ Repositori saat ini berisi kerangka awal Flutter dengan aplikasi penghitung bawa
 
 ## Daftar Modul & Pembagian Kerja
 
-Pembagian berikut menjadi acuan pengembangan versi mobile dengan fokus lelang. Seluruh modul berprioritas **esensial** dan saat ini berstatus **direncanakan**.
+Pembagian mobile mengikuti modul website yang sudah dikerjakan. Auction merupakan tambahan tanggung jawab Hudzaifah (Uza), bukan pengganti fokus marketplace atau modul anggota lainnya.
 
 | No. | Modul | Tanggung Jawab | PIC | Prioritas |
 | --- | --- | --- | --- | --- |
-| 1 | Autentikasi & Profil | Registrasi, login, logout, melihat dan mengubah profil, serta mengelola alamat pengiriman pengguna. | Hudzaifah | Esensial |
-| 2 | Eksplorasi Lelang | Menjelajahi katalog lelang, pencarian, kategori, filter, pengurutan, paginasi, serta menambah, melihat, dan menghapus lelang dari daftar pantauan pribadi (watchlist). | Lynorexly Imanuel Tatipikalawan | Esensial |
-| 3 | Detail Lelang & Penawaran | Detail lelang, pengajuan penawaran, penawaran tertinggi, riwayat penawaran, hitung mundur, serta penetapan hasil lelang melalui backend. | Albert Timmothy Ariajaya | Esensial |
-| 4 | Manajemen Lelang Penjual | Membuat, mengubah, dan mengelola lelang milik sendiri, termasuk informasi pakaian, foto, harga awal, kelipatan minimum penawaran, jadwal, dan status publikasi. | Niccola Geraldo Winaryo Durand | Esensial |
-| 5 | Transaksi & Riwayat | Lelang yang dimenangkan, detail transaksi, alamat pengiriman pesanan, status pembayaran dan pesanan, serta riwayat pembelian dan penjualan. | Fathir Azka Dillafah | Esensial |
+| 1 | Autentikasi & Profil, serta Auction | Registrasi, login, logout, profil, dan integrasi sesi pengguna; tambahan fokus auction mencakup halaman lelang, penawaran, riwayat penawaran, waktu berakhir, serta hasil lelang yang ditentukan backend. | Hudzaifah (Uza) | Esensial |
+| 2 | Katalog & Listing Pakaian | Menampilkan, mencari, dan memfilter pakaian; detail produk; membuat, mengubah, dan menghapus listing milik penjual sesuai aturan backend. | Niccola Geraldo Winaryo Durand | Esensial |
+| 3 | Ulasan & Rating Penjual | Menambah ulasan setelah transaksi completed; melihat, mengedit, menghapus, dan memfilter ulasan milik pengguna; menampilkan rating sesuai data backend. | Albert Timmothy Ariajaya | Esensial |
+| 4 | Transaksi & Riwayat | Keranjang, checkout, detail pesanan, alur pembayaran, status pesanan, serta riwayat pembelian dan penjualan. | Fathir Azka Dillafah | Esensial |
+| 5 | Lokasi Drop-off & Pengiriman | Menampilkan dan mencari titik drop-off/mitra pengiriman terdekat berdasarkan lokasi, termasuk integrasi peta dan data lokasi sesuai backend website. | Lynorexly Imanuel Tatipikalawan | Esensial |
 
 Setiap PIC bertanggung jawab atas halaman Flutter modulnya, widget layout dan input, event handling, pemanggilan API secara asinkron, serta pengolahan respons JSON. PIC juga mengembangkan endpoint DRF modul terkait, termasuk serializer dan view/viewset, di repositori Django.
 
 ### Batas Tanggung Jawab Antarmodul
 
-- **Eksplorasi Lelang** menangani penemuan lelang dan daftar pantauan; perubahan informasi lelang menjadi tanggung jawab **Manajemen Lelang Penjual**.
-- **Detail Lelang & Penawaran** menangani interaksi peserta dan hasil lelang. Backend menentukan validitas penawaran, waktu berakhir, dan pemenang; hitung mundur Flutter mengikuti waktu dari server.
-- **Manajemen Lelang Penjual** mengatur data dan publikasi lelang milik penjual, termasuk pembatasan perubahan setelah penawaran masuk.
-- **Transaksi & Riwayat** menggunakan hasil lelang yang telah ditetapkan backend untuk membentuk transaksi pemenang dan menangani proses setelah lelang berakhir.
-- **Autentikasi & Profil** menyimpan alamat pengguna. **Transaksi & Riwayat** menyimpan salinan alamat yang dipilih pada pesanan agar riwayat pengiriman tetap sesuai transaksi tersebut.
+- **Katalog & Listing** menyediakan data pakaian yang digunakan transaksi, ulasan, dan auction. PIC modul lain menggunakan relasi atau ID listing dari backend.
+- **Transaksi & Riwayat** mengelola pembelian serta status pesanan. **Ulasan & Rating** memeriksa transaksi milik pembeli dengan status completed sebelum menerima ulasan.
+- **Ulasan & Rating** menjadi tanggung jawab Albert; halaman katalog dapat memakai ringkasan rating dari endpoint ulasan tanpa memindahkan kepemilikan modul.
+- **Autentikasi & Profil** menyediakan sesi pengguna bersama untuk seluruh modul. Setiap endpoint tetap memeriksa izin dan kepemilikan data.
+- **Auction** menjadi tambahan fokus Uza. Validitas penawaran, waktu berakhir, dan hasil lelang ditentukan backend; integrasi transaksi hasil lelang dikoordinasikan dengan Fathir.
+- **Lokasi Drop-off & Pengiriman** menyediakan pencarian lokasi; pengelolaan pesanan tetap berada di modul transaksi.
 
 ## Sumber Data
 
 - **Backend utama:** proyek [WearBack Django](https://github.com/F09-PBP-26/wearback), yang digunakan bersama oleh situs web dan aplikasi mobile.
-- **Data aplikasi:** akun, profil, alamat, pakaian, lelang, penawaran, daftar pantauan, dan transaksi akan disimpan di database backend Django serta diakses melalui endpoint DRF.
+- **Data aplikasi:** akun, profil, listing pakaian, transaksi, ulasan/rating, data drop-off, serta lelang dan penawaran diakses melalui backend Django dan endpoint DRF.
+- **Peta/lokasi:** OpenStreetMap menjadi referensi integrasi lokasi dari website; penerapan Flutter menjadi tanggung jawab PIC drop-off.
+- **Data produk awal:** website menggunakan dataset sintetis listing pakaian yang di-seed ke database. Aplikasi mobile membaca data backend, bukan menyalin dataset statis ke kode Flutter.
 - **Data pengujian:** data contoh disiapkan di backend agar alur situs web dan mobile dapat diuji menggunakan sumber data yang sama. Data statis di Flutter tidak digunakan sebagai pengganti integrasi API.
 
 ## Peran Pengguna
 
-1. **Pengguna Umum (belum login)** dapat menjelajahi katalog, mencari dan memfilter lelang, serta melihat informasi lelang yang bersifat publik. Pengajuan penawaran, daftar pantauan pribadi, dan transaksi memerlukan login.
-2. **Pembeli/Peserta Lelang** dapat mengelola profil dan alamat, menyimpan lelang ke daftar pantauan, mengajukan penawaran, melihat hasil lelang, serta mengakses transaksi dan riwayat pembeliannya.
-3. **Penjual** dapat membuat dan mengelola lelang miliknya, memantau penawaran dan hasil lelang, serta mengelola pesanan dan riwayat penjualan terkait.
+1. **Pengguna Umum (belum login)** dapat melihat listing dan informasi publik sesuai izin backend; transaksi dan data kontak pribadi memerlukan login.
+2. **Pembeli** dapat menjelajahi pakaian, bertransaksi, melihat riwayat pembelian, memberi ulasan setelah transaksi completed, mencari drop-off, dan mengikuti auction.
+3. **Penjual** dapat mengelola listing miliknya, memproses pesanan, melihat ulasan pembeli, serta menggunakan fitur auction sesuai aturan backend.
 
 Pembeli dan penjual merupakan peran dalam penggunaan fitur; satu akun dapat melakukan keduanya. Backend memeriksa autentikasi, kepemilikan data, dan izin tindakan pada setiap permintaan yang memerlukannya.
 
@@ -79,23 +83,30 @@ Interaksi pengguna pada halaman Flutter
 
 ### Pembacaan dan Perubahan Data
 
-1. Flutter meminta data melalui endpoint modul, misalnya katalog lelang, detail penawaran, atau riwayat transaksi.
+1. Flutter meminta data melalui endpoint modul, misalnya listing pakaian, daftar ulasan, titik drop-off, detail lelang, atau riwayat transaksi.
 2. View/viewset DRF memeriksa akses, mengambil data dari database, dan mengembalikan JSON melalui serializer.
 3. Flutter mengolah JSON menjadi model Dart dan menampilkan hasilnya, termasuk kondisi memuat, data kosong, dan kegagalan permintaan.
-4. Untuk tindakan seperti membuat lelang, menawar, atau mengubah alamat, Flutter mengirimkan data melalui metode HTTP sesuai kontrak endpoint.
+4. Untuk tindakan seperti membuat listing, mengirim ulasan, mengajukan penawaran, atau mengubah profil, Flutter mengirimkan data melalui metode HTTP sesuai kontrak endpoint.
 5. Backend memvalidasi permintaan dan menyimpan perubahan. Flutter menggunakan respons atau memuat ulang data terkait untuk memperbarui tampilan.
 
 Permintaan yang memerlukan login menyertakan informasi autentikasi sesuai mekanisme yang ditetapkan backend. Kontrak autentikasi dan konfigurasi alamat API akan didokumentasikan ketika implementasinya tersedia.
 
 ### Integrasi Antarmodul
 
-Penjual membuat dan menerbitkan lelang melalui modul Manajemen Lelang Penjual. Lelang tersebut muncul pada Eksplorasi Lelang, lalu peserta membuka detail dan mengajukan penawaran melalui modul Detail Lelang & Penawaran. Setelah lelang berakhir, backend menetapkan hasilnya. Modul Transaksi & Riwayat menggunakan hasil tersebut untuk menyediakan transaksi pemenang dan proses pesanan berikutnya.
+Penjual mengunggah pakaian melalui modul katalog/listing. Pembeli memilih pakaian dan melakukan checkout melalui modul transaksi. Setelah transaksi completed, pembeli dapat menulis ulasan yang terhubung dengan transaksi dan listing tersebut. Modul lokasi membantu pengguna menemukan titik drop-off/pengiriman. Auction menyediakan alur penawaran tambahan pada marketplace, dengan hasil dari backend yang diintegrasikan ke transaksi sesuai kontrak antarmodul.
 
-Saat demo integrasi, lelang yang dibuat melalui situs web harus dapat dibaca di mobile. Penawaran dan perubahan data yang dikirim melalui mobile juga harus dapat dibaca kembali melalui situs web.
+Saat demo, data dari website harus dapat dibaca oleh mobile, dan perubahan melalui mobile harus tersimpan di backend yang sama sehingga dapat dilihat kembali melalui website.
 
 ### Status Endpoint
 
-Daftar endpoint DRF per modul belum tersedia dalam dokumentasi ini. URL, metode HTTP, format permintaan/respons, dan kebutuhan autentikasi akan dicantumkan setelah endpoint diverifikasi pada backend. Penjelasan integrasi di atas merupakan rancangan, bukan pernyataan bahwa API sudah berjalan.
+Konvensi backend pada README website yang diberikan memakai awalan `/api/v1/`, autentikasi sesi, CSRF untuk operasi perubahan data, serta paginasi default 20 item. Implementasi ulasan lokal yang dibuat pada tahap awal masih memakai `/api/reviews/` dan paginasi 10 item. Perbedaan ini harus diselaraskan dengan konfigurasi backend kelompok sebelum integrasi final; dokumentasi ini tidak menyatakan URL `/api/v1/reviews/` sudah tersedia.
+
+| Metode | Endpoint saat ini | Fungsi | Autentikasi | Status |
+| --- | --- | --- | --- | --- |
+| GET | `/api/reviews/` | Daftar ulasan milik pengguna; respons count, next, previous, results | Sesi login | HTTP 200 dan data JSON sudah diverifikasi di backend lokal |
+| GET | `/api/reviews/<id>/` | Detail ulasan milik pengguna | Sesi login | Kode tersedia; uji manual detail belum dikonfirmasi |
+
+API tambah/edit/hapus ulasan dan integrasi sesi pada Flutter belum selesai. Endpoint modul lainnya perlu didokumentasikan oleh PIC masing-masing setelah diverifikasi. Status API lokal tidak menyatakan API sudah di-deploy ke PWS.
 
 ## Cara Menjalankan Proyek
 
@@ -138,7 +149,7 @@ Daftar endpoint DRF per modul belum tersedia dalam dokumentasi ini. URL, metode 
    flutter run
    ```
 
-Saat ini langkah tersebut menjalankan aplikasi penghitung bawaan Flutter. Aplikasi belum memiliki konfigurasi alamat API maupun koneksi ke PWS. Setelah integrasi tersedia, panduan ini akan dilengkapi dengan konfigurasi backend yang benar-benar digunakan oleh kode.
+Pada kode lokal saat ini, aplikasi menampilkan halaman utama WearBack dengan navigasi ke halaman dasar Ulasan & Rating. Aplikasi belum memiliki konfigurasi alamat API maupun koneksi ke PWS. Setelah integrasi tersedia, panduan ini akan dilengkapi dengan konfigurasi backend yang benar-benar digunakan oleh kode.
 
 Untuk menyiapkan backend lokal, ikuti [petunjuk instalasi pada README Django](https://github.com/F09-PBP-26/wearback/blob/main/README.md). Backend Django dikelola di repositori terpisah.
 
@@ -149,7 +160,7 @@ flutter analyze
 flutter test
 ```
 
-Pengujian yang tersedia saat ini masih berupa pengujian widget aplikasi penghitung bawaan. Pengujian modul dan integrasi akan ditambahkan bersama implementasinya.
+Tes widget bawaan penghitung perlu disesuaikan dengan halaman utama yang baru. Pengujian modul dan integrasi akan ditambahkan bersama implementasinya; seluruh tes belum dinyatakan lolos.
 
 ### Membangun APK
 
