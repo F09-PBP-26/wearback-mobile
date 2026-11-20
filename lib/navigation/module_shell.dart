@@ -3,6 +3,7 @@ import 'package:wearback_mobile/pages/account_page.dart';
 import 'package:wearback_mobile/pages/transaction_history_page.dart';
 import 'package:wearback_mobile/screens/reviews/review_list_page.dart';
 import 'package:wearback_mobile/widgets/module_placeholder.dart';
+import 'package:wearback_mobile/pages/dropoff_page.dart';
 
 enum _Module {
   accountAndAuction(
@@ -28,7 +29,7 @@ enum _Module {
   dropOff(
     'Lokasi Drop-off & Pengiriman',
     Icons.location_on_outlined,
-    ModulePlaceholder('Lokasi drop-off dan pengiriman sedang disiapkan.'),
+    DropoffPage(),
   );
 
   const _Module(this.title, this.icon, this.page);
