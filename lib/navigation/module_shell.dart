@@ -4,6 +4,7 @@ import 'package:wearback_mobile/pages/auction_browsing_page.dart';
 import 'package:wearback_mobile/pages/auction_detail_page.dart';
 import 'package:wearback_mobile/pages/seller_auctions_page.dart';
 import 'package:wearback_mobile/pages/transaction_history_page.dart';
+import 'package:wearback_mobile/screens/reviews/review_list_page.dart';
 
 enum _Module {
   auctionBrowsing('Eksplorasi Lelang', Icons.search, AuctionBrowsingPage()),
@@ -71,6 +72,17 @@ class _ModuleShellState extends State<ModuleShell> {
                     Navigator.pop(context);
                   },
                 ),
+              ListTile(
+                leading: const Icon(Icons.rate_review_outlined),
+                title: const Text('Ulasan & Rating'),
+                onTap: () {
+                  final navigator = Navigator.of(context);
+                  navigator.pop();
+                  navigator.push(MaterialPageRoute<void>(
+                    builder: (_) => const ReviewListPage(),
+                  ));
+                },
+              ),
             ],
           ),
         ),

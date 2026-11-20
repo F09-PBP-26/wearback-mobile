@@ -42,5 +42,16 @@ void main() {
       expect(find.widgetWithText(AppBar, module.key), findsOneWidget);
       expect(find.byType(module.value), findsOneWidget);
     }
+
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    final reviews = find.text('Ulasan & Rating');
+    await tester.ensureVisible(reviews);
+    await tester.tap(reviews);
+    await tester.pumpAndSettle();
+    expect(find.text('Ulasan Saya'), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.byType(AuctionBrowsingPage), findsOneWidget);
   });
 }

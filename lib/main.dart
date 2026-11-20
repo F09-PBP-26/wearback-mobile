@@ -15,9 +15,10 @@ class WearBackApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF28392F),
-          surface: const Color(0xFFFAEEE8),
+          seedColor: const Color(0xFF294439),
         ),
+        scaffoldBackgroundColor: const Color(0xFFF6F5F0),
+        useMaterial3: true,
       ),
       home: const ModuleShell(),
     );
