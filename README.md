@@ -17,7 +17,7 @@ Proyek ini dibuat untuk memenuhi tugas **Proyek Akhir Semester - Pemrograman Ber
 
 ### Status Pengembangan
 
-Pada pengerjaan lokal saat ini, halaman utama Flutter dan navigasi menuju halaman dasar Ulasan & Rating sudah dibuat. Halaman ulasan belum mengambil data dari backend. API daftar ulasan pada Django lokal sudah diverifikasi mengembalikan HTTP 200 setelah login; status deployment API di PWS belum diverifikasi. Modul lain mengikuti pembagian di bawah dan status implementasinya perlu dikonfirmasi oleh masing-masing PIC. Fitur website tidak otomatis berarti fitur Flutter sudah selesai.
+Menu samping Flutter menyediakan navigasi modul, termasuk halaman dasar Ulasan & Rating. Halaman ulasan belum mengambil data dari backend. API daftar ulasan pada Django lokal sudah diverifikasi mengembalikan HTTP 200 setelah login; status deployment API di PWS belum diverifikasi. Modul lain mengikuti pembagian di bawah dan status implementasinya perlu dikonfirmasi oleh masing-masing PIC. Fitur website tidak otomatis berarti fitur Flutter sudah selesai.
 
 ## Anggota Kelompok
 
@@ -149,7 +149,7 @@ API tambah/edit/hapus ulasan dan integrasi sesi pada Flutter belum selesai. Endp
    flutter run
    ```
 
-Pada kode lokal saat ini, aplikasi menampilkan halaman utama WearBack dengan navigasi ke halaman dasar Ulasan & Rating. Aplikasi belum memiliki konfigurasi alamat API maupun koneksi ke PWS. Setelah integrasi tersedia, panduan ini akan dilengkapi dengan konfigurasi backend yang benar-benar digunakan oleh kode.
+Aplikasi membuka Eksplorasi Lelang. Buka menu samping untuk memilih modul atau membuka Ulasan & Rating. Aplikasi belum memiliki konfigurasi alamat API maupun koneksi ke PWS. Setelah integrasi tersedia, panduan ini akan dilengkapi dengan konfigurasi backend yang benar-benar digunakan oleh kode.
 
 Untuk menyiapkan backend lokal, ikuti [petunjuk instalasi pada README Django](https://github.com/F09-PBP-26/wearback/blob/main/README.md). Backend Django dikelola di repositori terpisah.
 
@@ -160,7 +160,7 @@ flutter analyze
 flutter test
 ```
 
-Tes widget bawaan penghitung perlu disesuaikan dengan halaman utama yang baru. Pengujian modul dan integrasi akan ditambahkan bersama implementasinya; seluruh tes belum dinyatakan lolos.
+Tes widget mencakup navigasi modul melalui menu samping dan akses ke halaman Ulasan & Rating.
 
 ### Membangun APK
 
