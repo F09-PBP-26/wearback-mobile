@@ -5,6 +5,7 @@ import 'package:wearback_mobile/pages/account_page.dart';
 import 'package:wearback_mobile/pages/transaction_history_page.dart';
 import 'package:wearback_mobile/screens/reviews/review_list_page.dart';
 import 'package:wearback_mobile/widgets/module_placeholder.dart';
+import 'package:wearback_mobile/pages/dropoff_page.dart';
 
 void main() {
   testWidgets('Drawer opens each module in the current README scope', (
@@ -16,14 +17,13 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
 
     await tester.pumpWidget(const WearBackApp());
-    expect(find.byType(ModulePlaceholder), findsOneWidget);
 
     const modules = {
       'Autentikasi, Profil & Auction': AccountPage,
       'Katalog & Listing Pakaian': ModulePlaceholder,
       'Ulasan & Rating Penjual': ReviewListPage,
       'Transaksi & Riwayat': TransactionHistoryPage,
-      'Lokasi Drop-off & Pengiriman': ModulePlaceholder,
+      'Lokasi Drop-off & Pengiriman': DropoffPage,
     };
     final scaffold = tester.state<ScaffoldState>(find.byType(Scaffold));
     final drawer = find.byType(Drawer);
