@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:wearback_mobile/pages/account_page.dart';
-import 'package:wearback_mobile/pages/auction_browsing_page.dart';
-import 'package:wearback_mobile/pages/auction_detail_page.dart';
-import 'package:wearback_mobile/pages/seller_auctions_page.dart';
 import 'package:wearback_mobile/pages/transaction_history_page.dart';
 import 'package:wearback_mobile/screens/reviews/review_list_page.dart';
+import 'package:wearback_mobile/widgets/module_placeholder.dart';
 
 enum _Module {
-  auctionBrowsing('Eksplorasi Lelang', Icons.search, AuctionBrowsingPage()),
-  auctionDetail('Detail Lelang & Penawaran', Icons.gavel, AuctionDetailPage()),
-  sellerAuctions(
-    'Manajemen Lelang Penjual',
-    Icons.storefront,
-    SellerAuctionsPage(),
+  accountAndAuction(
+    'Autentikasi, Profil & Auction',
+    Icons.person_outline,
+    AccountPage(),
+  ),
+  catalog(
+    'Katalog & Listing Pakaian',
+    Icons.checkroom_outlined,
+    ModulePlaceholder('Katalog dan listing pakaian sedang disiapkan.'),
+  ),
+  reviews(
+    'Ulasan & Rating Penjual',
+    Icons.rate_review_outlined,
+    ReviewListPage(),
   ),
   transactions(
     'Transaksi & Riwayat',
     Icons.receipt_long,
     TransactionHistoryPage(),
   ),
-  account('Autentikasi & Profil', Icons.person_outline, AccountPage());
+  dropOff(
+    'Lokasi Drop-off & Pengiriman',
+    Icons.location_on_outlined,
+    ModulePlaceholder('Lokasi drop-off dan pengiriman sedang disiapkan.'),
+  );
 
   const _Module(this.title, this.icon, this.page);
 
@@ -36,7 +46,7 @@ class ModuleShell extends StatefulWidget {
 }
 
 class _ModuleShellState extends State<ModuleShell> {
-  _Module _selectedModule = _Module.auctionBrowsing;
+  _Module _selectedModule = _Module.catalog;
 
   @override
   Widget build(BuildContext context) {
@@ -72,17 +82,6 @@ class _ModuleShellState extends State<ModuleShell> {
                     Navigator.pop(context);
                   },
                 ),
-              ListTile(
-                leading: const Icon(Icons.rate_review_outlined),
-                title: const Text('Ulasan & Rating'),
-                onTap: () {
-                  final navigator = Navigator.of(context);
-                  navigator.pop();
-                  navigator.push(MaterialPageRoute<void>(
-                    builder: (_) => const ReviewListPage(),
-                  ));
-                },
-              ),
             ],
           ),
         ),

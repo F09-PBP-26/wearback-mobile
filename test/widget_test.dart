@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wearback_mobile/main.dart';
 import 'package:wearback_mobile/pages/account_page.dart';
-import 'package:wearback_mobile/pages/auction_browsing_page.dart';
-import 'package:wearback_mobile/pages/auction_detail_page.dart';
-import 'package:wearback_mobile/pages/seller_auctions_page.dart';
 import 'package:wearback_mobile/pages/transaction_history_page.dart';
+import 'package:wearback_mobile/screens/reviews/review_list_page.dart';
+import 'package:wearback_mobile/widgets/module_placeholder.dart';
 
 void main() {
-  testWidgets('Drawer opens each WearBack module and closes on selection', (
+  testWidgets('Drawer opens each module in the current README scope', (
     tester,
   ) async {
     tester.view.devicePixelRatio = 1;
@@ -17,14 +16,14 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
 
     await tester.pumpWidget(const WearBackApp());
-    expect(find.byType(AuctionBrowsingPage), findsOneWidget);
+    expect(find.byType(ModulePlaceholder), findsOneWidget);
 
     const modules = {
-      'Detail Lelang & Penawaran': AuctionDetailPage,
-      'Manajemen Lelang Penjual': SellerAuctionsPage,
+      'Autentikasi, Profil & Auction': AccountPage,
+      'Katalog & Listing Pakaian': ModulePlaceholder,
+      'Ulasan & Rating Penjual': ReviewListPage,
       'Transaksi & Riwayat': TransactionHistoryPage,
-      'Autentikasi & Profil': AccountPage,
-      'Eksplorasi Lelang': AuctionBrowsingPage,
+      'Lokasi Drop-off & Pengiriman': ModulePlaceholder,
     };
     final scaffold = tester.state<ScaffoldState>(find.byType(Scaffold));
     final drawer = find.byType(Drawer);
@@ -42,20 +41,5 @@ void main() {
       expect(find.widgetWithText(AppBar, module.key), findsOneWidget);
       expect(find.byType(module.value), findsOneWidget);
     }
-
-    await tester.tap(find.byTooltip('Open navigation menu'));
-    await tester.pumpAndSettle();
-    final reviews = find.text('Ulasan & Rating');
-    await tester.ensureVisible(reviews);
-    await tester.tap(reviews);
-    await tester.pumpAndSettle();
-    expect(find.text('Ulasan Saya'), findsOneWidget);
-    expect(
-      find.text('Silakan login untuk melihat ulasan kamu.'),
-      findsOneWidget,
-    );
-    await tester.pageBack();
-    await tester.pumpAndSettle();
-    expect(find.byType(AuctionBrowsingPage), findsOneWidget);
   });
 }
