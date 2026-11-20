@@ -2,7 +2,7 @@
 
 **"Wear It Back, Give It Back"**
 
-WearBack adalah platform marketplace pakaian preloved yang membantu pengguna menjual pakaian yang masih layak pakai dengan mudah, sekaligus memberi kesempatan kedua bagi fashion item untuk terus dipakai. Pakaian yang menumpuk di lemari dapat menjadi penghasilan tambahan bagi penjual dan pilihan fashion yang lebih terjangkau serta ramah lingkungan bagi pembeli. Versi mobile melanjutkan cakupan website: katalog/listing pakaian, transaksi, ulasan dan rating, pencarian titik drop-off, serta autentikasi dan profil. Auction menjadi fitur tambahan dalam marketplace, dengan penanggung jawab Hudzaifah (Uza).
+WearBack adalah platform marketplace pakaian preloved yang membantu pengguna menjual pakaian yang masih layak pakai dengan mudah, sekaligus memberi kesempatan kedua bagi fashion item untuk terus dipakai. Pakaian yang menumpuk di lemari dapat menjadi penghasilan tambahan bagi penjual dan pilihan fashion yang lebih terjangkau serta ramah lingkungan bagi pembeli. Versi mobile melanjutkan cakupan website: katalog/listing pakaian, lelang, transaksi, ulasan dan rating, pencarian titik drop-off, serta autentikasi dan profil.
 
 WearBack Mobile merupakan aplikasi Flutter yang terhubung ke [situs web WearBack](https://hudzaifah51-wearback.pws.cs.ui.ac.id). Data aplikasi dikelola oleh backend Django yang sama dengan situs web dan akan diakses melalui web service **Django REST Framework (DRF)**.
 
@@ -33,13 +33,13 @@ Menu samping Flutter menyediakan navigasi modul, termasuk halaman dasar Ulasan &
 
 Pembagian mobile mengikuti modul website yang sudah dikerjakan. Auction merupakan tambahan tanggung jawab Hudzaifah (Uza), bukan pengganti fokus marketplace atau modul anggota lainnya.
 
-| No. | Modul | Tanggung Jawab | PIC | Prioritas |
-| --- | --- | --- | --- | --- |
-| 1 | Autentikasi & Profil, serta Auction | Registrasi, login, logout, profil, dan integrasi sesi pengguna; tambahan fokus auction mencakup halaman lelang, penawaran, riwayat penawaran, waktu berakhir, serta hasil lelang yang ditentukan backend. | Hudzaifah (Uza) | Esensial |
-| 2 | Katalog & Listing Pakaian | Menampilkan, mencari, dan memfilter pakaian; detail produk; membuat, mengubah, dan menghapus listing milik penjual sesuai aturan backend. | Niccola Geraldo Winaryo Durand | Esensial |
-| 3 | Ulasan & Rating Penjual | Menambah ulasan setelah transaksi completed; melihat, mengedit, menghapus, dan memfilter ulasan milik pengguna; menampilkan rating sesuai data backend. | Albert Timmothy Ariajaya | Esensial |
-| 4 | Transaksi & Riwayat | Keranjang, checkout, detail pesanan, alur pembayaran, status pesanan, serta riwayat pembelian dan penjualan. | Fathir Azka Dillafah | Esensial |
-| 5 | Lokasi Drop-off & Pengiriman | Menampilkan dan mencari titik drop-off/mitra pengiriman terdekat berdasarkan lokasi, termasuk integrasi peta dan data lokasi sesuai backend website. | Lynorexly Imanuel Tatipikalawan | Esensial |
+| No. | Modul | Tanggung Jawab | PIC |
+| --- | --- | --- | --- |
+| 1 | Autentikasi & Profil, serta Auction | Registrasi, login, logout, profil, dan integrasi sesi pengguna; tambahan fokus auction mencakup halaman lelang, penawaran, riwayat penawaran, waktu berakhir, serta hasil lelang yang ditentukan backend. | Hudzaifah (Uza) |
+| 2 | Katalog & Listing Pakaian | Menampilkan, mencari, dan memfilter pakaian; detail produk; membuat, mengubah, dan menghapus listing milik penjual sesuai aturan backend. | Niccola Geraldo Winaryo Durand |
+| 3 | Ulasan & Rating Penjual | Menambah ulasan setelah transaksi completed; melihat, mengedit, menghapus, dan memfilter ulasan milik pengguna; menampilkan rating sesuai data backend. | Albert Timmothy Ariajaya |
+| 4 | Transaksi & Riwayat | Keranjang, checkout, detail pesanan, alur pembayaran, status pesanan, serta riwayat pembelian dan penjualan. | Fathir Azka Dillafah |
+| 5 | Lokasi Drop-off & Pengiriman | Menampilkan dan mencari titik drop-off/mitra pengiriman terdekat berdasarkan lokasi, termasuk integrasi peta dan data lokasi sesuai backend website. | Lynorexly Imanuel Tatipikalawan |
 
 Setiap PIC bertanggung jawab atas halaman Flutter modulnya, widget layout dan input, event handling, pemanggilan API secara asinkron, serta pengolahan respons JSON. PIC juga mengembangkan endpoint DRF modul terkait, termasuk serializer dan view/viewset, di repositori Django.
 
