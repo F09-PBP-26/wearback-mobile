@@ -1,19 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wearback_mobile/main.dart';
+import 'package:wearback_mobile/pages/account_page.dart';
+import 'package:wearback_mobile/pages/auction_browsing_page.dart';
+import 'package:wearback_mobile/pages/auction_detail_page.dart';
+import 'package:wearback_mobile/pages/seller_auctions_page.dart';
+import 'package:wearback_mobile/pages/transaction_history_page.dart';
 
 void main() {
-  testWidgets('Navigasi ulasan dan kembali tanpa sesi login', (tester) async {
-    await tester.pumpWidget(const MyApp());
-    await tester.tap(find.text('Ulasan & Rating'));
+  testWidgets('Drawer opens each WearBack module and closes on selection', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(320, 568);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+
+    await tester.pumpWidget(const WearBackApp());
+    expect(find.byType(AuctionBrowsingPage), findsOneWidget);
+
+    const modules = {
+      'Detail Lelang & Penawaran': AuctionDetailPage,
+      'Manajemen Lelang Penjual': SellerAuctionsPage,
+      'Transaksi & Riwayat': TransactionHistoryPage,
+      'Autentikasi & Profil': AccountPage,
+      'Eksplorasi Lelang': AuctionBrowsingPage,
+    };
+    final scaffold = tester.state<ScaffoldState>(find.byType(Scaffold));
+    final drawer = find.byType(Drawer);
+    for (final module in modules.entries) {
+      await tester.tap(find.byTooltip('Open navigation menu'));
+      await tester.pumpAndSettle();
+      expect(scaffold.isDrawerOpen, isTrue);
+
+      final menu = find.descendant(of: drawer, matching: find.text(module.key));
+      await tester.ensureVisible(menu);
+      await tester.tap(menu);
+      await tester.pumpAndSettle();
+
+      expect(scaffold.isDrawerOpen, isFalse);
+      expect(find.widgetWithText(AppBar, module.key), findsOneWidget);
+      expect(find.byType(module.value), findsOneWidget);
+    }
+
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    final reviews = find.text('Ulasan & Rating');
+    await tester.ensureVisible(reviews);
+    await tester.tap(reviews);
     await tester.pumpAndSettle();
     expect(find.text('Ulasan Saya'), findsOneWidget);
     expect(
       find.text('Silakan login untuk melihat ulasan kamu.'),
       findsOneWidget,
     );
-    await tester.tap(find.byType(BackButton));
+    await tester.pageBack();
     await tester.pumpAndSettle();
-    expect(find.text('Wear It Back, Give It Back'), findsOneWidget);
+    expect(find.byType(AuctionBrowsingPage), findsOneWidget);
   });
 }
